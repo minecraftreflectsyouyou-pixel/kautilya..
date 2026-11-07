@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bhuvan - an independent guide to Kautilya Vidyalaya, Mysuru.">
+<title>Bhuvan | Kautilya Vidyalaya, Mysuru</title>
+<style>
+:root{
+  --ink:#0a0f24;--ink2:#111a3a;--gold:#f5c26b;--gold2:#ffe2a8;
+  --aqua:#38e1d0;--rose:#ff6f91;--violet:#8b7bff;--text:#eef1ff;--muted:#aab3d6;
+  --glass:rgba(255,255,255,.07);--line:rgba(255,255,255,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",system-ui,Arial,sans-serif;background:var(--ink);color:var(--text);line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{line-height:1.15}
+
+/* Animated background */
+.aurora{position:fixed;inset:-20%;z-index:-2;background:
+  radial-gradient(40% 40% at 20% 20%,rgba(56,225,208,.25),transparent 70%),
+  radial-gradient(40% 40% at 80% 30%,rgba(255,111,145,.22),transparent 70%),
+  radial-gradient(45% 45% at 50% 90%,rgba(139,123,255,.25),transparent 70%);
+  animation:drift 22s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(0,0) rotate(0)}to{transform:translate(-4%,3%) rotate(4deg)}}
+.stars{position:fixed;inset:0;z-index:-1;background-image:radial-gradient(1.5px 1.5px at 20% 30%,#fff8,transparent),radial-gradient(1px 1px at 70% 60%,#fff6,transparent),radial-gradient(2px 2px at 40% 80%,#fff5,transparent),radial-gradient(1px 1px at 85% 15%,#fff7,transparent);background-size:300px 300px;opacity:.6;animation:twinkle 6s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.35}to{opacity:.8}}
+
+/* Navbar */
+.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding:14px 6%;background:rgba(10,15,36,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font-size:1.6rem;font-weight:900;letter-spacing:5px;background:linear-gradient(90deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+.links{display:flex;gap:20px;flex-wrap:wrap}
+.links a{color:var(--muted);font-size:.95rem;position:relative;transition:color .25s}
+.links a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--aqua);transition:width .3s}
+.links a:hover{color:var(--text)}
+.links a:hover::after{width:100%}
+
+/* Hero */
+.hero{min-height:90vh;display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:center;padding:80px 6%}
+.kicker{display:inline-block;padding:6px 16px;border:1px solid var(--line);border-radius:999px;color:var(--aqua);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;background:var(--glass)}
+.hero h1{font-size:clamp(3rem,7vw,5.6rem);font-weight:900;letter-spacing:-1px;margin-bottom:16px}
+.hero h1 .grad{background:linear-gradient(90deg,var(--gold),var(--rose),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% auto;animation:shine 5s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+.sub{color:var(--gold2);font-weight:600;font-size:1.1rem;margin-bottom:18px}
+.intro{color:var(--muted);max-width:600px;font-size:1.05rem;margin-bottom:32px}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 28px;border-radius:999px;font-weight:700;transition:transform .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-3px)}
+.btn-main{background:linear-gradient(90deg,var(--gold),var(--rose));color:#1a0b10;box-shadow:0 12px 30px rgba(255,111,145,.35)}
+.btn-line{border:1px solid var(--line);background:var(--glass);color:var(--text)}
+
+/* Orbit visual */
+.orbit{position:relative;width:min(420px,90vw);aspect-ratio:1;margin:auto}
+.orbit .core{position:absolute;inset:30%;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--gold2),var(--gold) 40%,var(--rose));box-shadow:0 0 60px rgba(245,194,107,.5);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;color:#1a0b10;animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.orbit .ring{position:absolute;inset:0;border:1px dashed var(--line);border-radius:50%;animation:spin 30s linear infinite}
+.orbit .ring i{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--aqua);top:-7px;left:50%;box-shadow:0 0 16px var(--aqua)}
+.orbit .ring.r2{inset:12%;animation-duration:20s;animation-direction:reverse}
+.orbit .ring.r2 i{background:var(--rose);box-shadow:0 0 16px var(--rose)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Stats strip */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1100px;margin:0 auto 40px;padding:0 6%}
+.stat{padding:28px 16px;text-align:center;border-radius:22px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(10px);transition:transform .3s}
+.stat:hover{transform:translateY(-8px) rotate(-1deg)}
+.stat b{display:block;font-size:2rem;font-weight:900;background:linear-gradient(90deg,var(--aqua),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{color:var(--muted);font-size:.9rem}
+
+/* Sections */
+section{padding:100px 6%;position:relative}
+.head{text-align:center;max-width:760px;margin:0 auto 60px}
+.eyebrow{color:var(--rose);text-transform:uppercase;letter-spacing:3px;font-size:.8rem;font-weight:800;margin-bottom:12px}
+.head h2{font-size:clamp(2rem,4.5vw,3.1rem);font-weight:900}
+.head p{color:var(--muted);margin-top:14px}
+
+/* Glass cards */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:1150px;margin:0 auto}
+.glass{padding:34px;border-radius:26px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(12px);transition:transform .35s,border-color .35s,box-shadow .35s}
+.glass:hover{transform:translateY(-10px);border-color:var(--aqua);box-shadow:0 20px 50px rgba(56,225,208,.15)}
+.glass .ico{font-size:2.2rem;margin-bottom:14px}
+.glass h3{font-size:1.3rem;margin-bottom:10px;color:var(--gold2)}
+.glass p{color:var(--muted)}
+
+/* Timeline */
+.tl{max-width:820px;margin:0 auto;position:relative;padding-left:44px}
+.tl::before{content:"";position:absolute;left:14px;top:0;bottom:0;width:3px;background:linear-gradient(var(--gold),var(--rose),var(--violet));border-radius:3px}
+.tl-item{position:relative;margin-bottom:22px;padding:22px 26px;border-radius:20px;background:var(--glass);border:1px solid var(--line);transition:transform .3s}
+.tl-item:hover{transform:translateX(8px)}
+.tl-item::before{content:"";position:absolute;left:-38px;top:28px;width:18px;height:18px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(245,194,107,.25),0 0 20px var(--gold)}
+.tl-item b{color:var(--aqua);font-size:1.2rem}
+.tl-item p{color:var(--muted);margin-top:4px}
+
+/* Facility tiles */
+.bento{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
+.tile{position:relative;overflow:hidden;border-radius:28px;min-height:340px;border:1px solid var(--line);background:var(--ink2);display:flex;flex-direction:column;justify-content:flex-end;transition:transform .35s,box-shadow .35s;cursor:pointer}
+.tile:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(0,0,0,.45)}
+.tile.big{grid-column:span 4}
+.tile.half{grid-column:span 2}
+.tile .art{position:absolute;inset:0;background:var(--c);transition:transform .6s}
+.tile .art::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.35),transparent 45%)}
+.tile:hover .art{transform:scale(1.06)}
+.tile .emoji{position:absolute;top:24px;left:24px;font-size:3.4rem;filter:drop-shadow(0 8px 18px rgba(0,0,0,.35));animation:bob 4s ease-in-out infinite;z-index:1}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.tile .scrim{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(10,15,36,.95) 25%,rgba(10,15,36,.2) 70%,transparent)}
+.tile .info{position:relative;z-index:3;padding:26px}
+.tile h3{font-size:1.5rem;margin-bottom:8px}
+.tile p{color:#dfe4ff;font-size:.98rem}
+.tile .tag{display:inline-block;margin-bottom:10px;padding:4px 12px;border-radius:999px;background:rgba(0,0,0,.35);font-size:.75rem;letter-spacing:1px;text-transform:uppercase}
+.t1{--c:linear-gradient(135deg,#1e6f8f,#38e1d0)}
+.t2{--c:linear-gradient(135deg,#2a2d7a,#8b7bff)}
+.t3{--c:linear-gradient(135deg,#7a3a1e,#f5c26b)}
+.t4{--c:linear-gradient(135deg,#7a1e4a,#ff6f91)}
+.t5{--c:linear-gradient(135deg,#1e5a3a,#7ce0a0)}
+.t6{--c:linear-gradient(135deg,#4a2a7a,#c58bff)}
+.t7{--c:linear-gradient(135deg,#7a5a1e,#ffd27a)}
+.t8{--c:linear-gradient(135deg,#1e3f7a,#6aa8ff)}
+
+/* Highlights marquee */
+.marquee{overflow:hidden;padding:20px 0;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.track{display:flex;gap:20px;width:max-content;animation:scroll 40s linear infinite}
+.track:hover{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.chip{flex:0 0 auto;padding:18px 30px;border-radius:999px;background:var(--glass);border:1px solid var(--line);font-weight:700;white-space:nowrap;font-size:1.05rem}
+
+/* Facts */
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;max-width:1150px;margin:0 auto}
+.info div{padding:26px;border-radius:22px;background:var(--glass);border:1px solid var(--line)}
+.info h4{color:var(--aqua);font-size:.85rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+.info p{font-size:1.02rem}
+.disclaimer{max-width:760px;margin:30px auto 0;text-align:center;color:var(--muted);font-size:.9rem}
+
+/* Visit */
+.cta{max-width:720px;margin:0 auto;text-align:center;padding:60px 40px;border-radius:32px;background:linear-gradient(135deg,rgba(245,194,107,.15),rgba(255,111,145,.15),rgba(139,123,255,.15));border:1px solid var(--line)}
+.cta h2{font-size:2.2rem;margin-bottom:12px}
+.cta p{color:var(--muted);margin-bottom:26px}
+
+footer{text-align:center;padding:50px 6%;border-top:1px solid var(--line);color:var(--muted)}
+footer .brand{font-size:1.3rem;display:inline-block;margin-bottom:8px}
+footer small{display:block;font-size:.8rem;margin-top:8px}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(5,8,20,.94);display:none;flex-direction:column;align-items:center;justify-content:center;padding:30px}
+.lb.open{display:flex}
+.lb-box{max-width:min(1000px,94vw);text-align:center}
+.lb-art{height:min(62vh,520px);border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:7rem;position:relative;overflow:hidden}
+.lb-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lb-box h3{margin-top:18px;font-size:1.6rem;color:var(--gold2)}
+.lb-box p{color:var(--muted);margin-top:6px;font-size:1.02rem}
+.lb-x{position:absolute;top:16px;right:24px;background:none;border:none;color:#fff;font-size:2.8rem;cursor:pointer}
+
+.t9{--c:linear-gradient(135deg,#8a6a10,#ffd84d)}
+
+/* Photo gallery */
+.photos{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+.ph{position:relative;margin:0;height:300px;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--ink2);cursor:pointer;transition:transform .35s,box-shadow .35s}
+.ph:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(0,0,0,.45)}
+.ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.ph:hover img{transform:scale(1.06)}
+.ph figcaption{position:absolute;left:14px;bottom:14px;padding:6px 14px;border-radius:999px;background:rgba(10,15,36,.8);color:var(--gold2);font-weight:700;font-size:.9rem}
+
+/* Scroll reveal */
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.rv.on{opacity:1;transform:none}
+
+/* Responsive */
+@media (max-width:1000px){.hero{grid-template-columns:1fr;text-align:center}.btns{justify-content:center}.intro{margin:0 auto 32px}.strip{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:760px){.bento{grid-template-columns:1fr}.tile.big,.tile.half{grid-column:span 1}.nav{justify-content:center}section{padding:70px 5%}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="aurora"></div>
+<div class="stars"></div>
+
+<header class="nav">
+  <a href="#home" class="brand">BHUVAN</a>
+  <nav class="links">
+    <a href="#about">About</a>
+    <a href="#journey">Journey</a>
+    <a href="#campus">Campus</a>
+    <a href="#highlights">Highlights</a>
+    <a href="#facts">Facts</a>
+    <a href="#visit">Visit</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div>
+    <span class="kicker">Mysuru &middot; Karnataka &middot; India</span>
+    <h1>Kautilya<br><span class="grad">Vidyalaya</span></h1>
+    <p class="sub">A CBSE co-educational day school, from kindergarten to pre-university</p>
+    <p class="intro">Bhuvan is an independent guide to this Mysuru school. Step through its campus, its swimming pool, its sports grounds, its tinkering lab and its award-winning sustainability work.</p>
+    <div class="btns">
+      <a href="#campus" class="btn btn-main">Explore the campus</a>
+      <a href="#visit" class="btn btn-line">Plan a visit</a>
+    </div>
+  </div>
+  <div class="orbit" aria-hidden="true">
+    <div class="ring"><i></i></div>
+    <div class="ring r2"><i></i></div>
+    <div class="core">BHUVAN</div>
+  </div>
+</section>
+
+<div class="strip rv">
+  <div class="stat"><b>2007</b><span>Founded</span></div>
+  <div class="stat"><b>2008</b><span>CBSE affiliation</span></div>
+  <div class="stat"><b>2017</b><span>First tinkering lab in Mysuru</span></div>
+  <div class="stat"><b>KG to PU</b><span>Full school span</span></div>
+</div>
+
+<section id="about">
+  <div class="head rv"><div class="eyebrow">About</div><h2>Built on learning, values and leadership</h2><p>The school aims for strong academics alongside sports, creativity and character.</p></div>
+  <div class="grid3">
+    <div class="glass rv"><div class="ico">🏫</div><h3>Who they are</h3><p>A higher secondary school in Mysuru, run from kindergarten to pre-university and managed by the J. Ranganna Lakshmamma Charitable Trust.</p></div>
+    <div class="glass rv"><div class="ico">🎯</div><h3>What they aim for</h3><p>Modern skills, ethics and leadership, supported by sports, creative activities and hands-on projects.</p></div>
+    <div class="glass rv"><div class="ico">📍</div><h3>Where they are</h3><p>In the Kanakadasa Nagar and Dattagalli area of Mysuru, a residential part of the city.</p></div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="head rv"><div class="eyebrow">Journey</div><h2>Milestones along the way</h2></div>
+  <div class="tl">
+    <div class="tl-item rv"><b>2007</b><p>The school is established in Mysuru.</p></div>
+    <div class="tl-item rv"><b>2008</b><p>Receives CBSE affiliation and follows the national curriculum.</p></div>
+    <div class="tl-item rv"><b>2017</b><p>Becomes the first school in Mysuru to open an Atal Tinkering Lab, inaugurated in September 2017.</p></div>
+    <div class="tl-item rv"><b>2018</b><p>Wins the British Council International School Award.</p></div>
+    <div class="tl-item rv"><b>2019</b><p>Wins the Wipro Earthian Award for sustainability initiatives.</p></div>
+    <div class="tl-item rv"><b>2025</b><p>A space lab is reported to be opening at the school in February 2025.</p></div>
+  </div>
+</section>
+
+<section id="campus">
+  <div class="head rv"><div class="eyebrow">Campus life</div><h2>Explore every corner</h2><p>Click any tile to see it up close.</p></div>
+  <div class="bento">
+    <div class="tile big rv t1" data-title="Main Campus &amp; Architecture" data-emoji="🏛️" data-text="Classrooms, open spaces and walkways on one site, designed to keep the school day organised for younger children." onclick="openTile(this)">
+      <div class="art"></div><div class="emoji">🏛️</div><img src="images/campus.png" alt="Main campus of Kautilya Vidyalaya" onerror="this.remove()"><div class="scrim"></div>
+      <div class="info"><span class="tag">Campus</span><h3>Main Campus &amp; Architecture</h3><p>Classrooms, open spaces and walkways on one site, designed to keep the school day organised.</p></div>
+    </div>
+    <div class="tile half rv t2" data-title="Swimming Pool" data-emoji="🏊" data-text="The school's own pool is used for swimming lessons that build water safety, fitness and confidence, run with trained instructors." onclick="openTile(this)">
+      <div class="art"></div><div class="emoji">🏊</div><img src="images/swimming-pool.png" alt="Swimming pool at Kautilya Vidyalaya" onerror="this.remove()"><div class="scrim"></div>
+      <div class="info"><span class="tag">Aquatics</span><h3>Swimming Pool</h3><p>Lessons for water safety, fitness and confidence, with trained instructors.</p></div>
+    </div>
+    <div class="tile half rv t3" data-title="Playground &amp; Sports" data-emoji="⚽" data-text="Football, cricket, basketball and track-and-field events build teamwork, discipline and a competitive spirit." onclick="openTile(this)">
+      <div class="art"></div><div class="emoji">⚽</div><img src="images/playground.jpg" alt="Playground" onerror="this.remove()"><div class="scrim"></div>
+      <div class="info"><span class="tag">Sports</span><h3>Playground &amp; Sports</h3><p>Football, cricket, basketball and athletics for teamwork and discipline.</p></div>
+    </div>
+    <div class="tile half rv t4" data-title="Atal Tinkering Lab" data-emoji="🤖" data-text="Set up under the Atal Innovation Mission by NITI Aayog, the lab offers electronics, robotics, 3D printing and IoT projects." onclick="openTile(this)">
+      <div class="art"></div><div class="emoji">🤖</div><img src="images/tinkering-lab.jpg" alt="Tinkering lab" onerror="this.remove()"><div class="scrim"></div>
+      <div class="info"><span class="tag">Innovation</span><h3>Atal Tinkering Lab</h3><p>Electronics, robotics, 3D printing and IoT, built and tested by students.</p></div>
+    </div>
+    <div class="tile half rv t5" data-title="Auditorium &amp; Events" data-emoji="🎭" data-text="Assemblies, annual days, investiture ceremonies and cultural programmes give students a stage for performance and leadership." onclick="openTile(this)">
+      <div class="art"></div><div class="emoji">🎭</div><img src="images/auditorium.jpg" alt="Auditorium" onerror="this.remove()"><div class="scrim"></div>
+      <div class="info"><span class="tag">Events</span><h3>Auditorium &amp; Events</h3><p>Annual days, ceremonies and performances that build confidence on stage.</p></div>
+    </div>
+    <div class="tile half rv t6" data-title="Classrooms" data-emoji="🧑‍🏫" data-text="CBSE subjects from kindergarten to pre-university, combining the board syllabus with practical activities and projects." onclick="openTile(this)">
+      <div class="art"></div><div class="emoji">🧑‍🏫</div><img src="images/students.png" alt="Students at Kautilya Vidyalaya" onerror="this.remove()"><div class="scrim"></div>
+      <div class="info"><span class="tag">Learning</span><h3>Classrooms</h3><p>CBSE subjects with practical projects, from kindergarten to pre-university.</p></div>
+    </div>
+    <div class="tile half rv t7" data-title="Library" data-emoji="📚" data-text="A quiet place to read, research and prepare for exams, with textbooks and general reading for curiosity." onclick="openTile(this)">
+      <div class="art"></div><div class="emoji">📚</div><img src="images/library.jpg" alt="Library" onerror="this.remove()"><div class="scrim"></div>
+      <div class="info"><span class="tag">Reading</span><h3>Library</h3><p>A quiet space for research, exam preparation and curious reading.</p></div>
+    </div>
+    <div class="tile half rv t8" data-title="Canteen" data-emoji="🍽️" data-text="Food and snacks during the day, and a welcome break between classes and sports sessions." onclick="openTile(this)">
+      <div class="art"></div><div class="emoji">🍽️</div><img src="images/canteen.jpg" alt="Canteen" onerror="this.remove()"><div class="scrim"></div>
+      <div class="info"><span class="tag">Food</span><h3>Canteen</h3><p>Snacks and meals between classes and sports sessions.</p></div>
+    </div>
+    <div class="tile half rv t9" data-title="School Transport" data-emoji="🚌" data-text="Yellow school buses bring students to and from the campus every day." onclick="openTile(this)">
+      <div class="art"></div><div class="emoji">🚌</div><img src="images/buses.png" alt="Kautilya Vidyalaya school buses" onerror="this.remove()"><div class="scrim"></div>
+      <div class="info"><span class="tag">Transport</span><h3>School Transport</h3><p>A fleet of yellow school buses for daily pick-up and drop-off.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="photos">
+  <div class="head rv"><div class="eyebrow">Photo gallery</div><h2>Seen on campus</h2><p>Click any photo to enlarge it.</p></div>
+  <div class="photos">
+    <figure class="ph rv" data-caption="Main building and school bus" onclick="openPhoto(this)"><img src="images/campus.png" alt="Main building and school bus" onerror="this.parentElement.remove()"><figcaption>Main building &amp; school bus</figcaption></figure>
+    <figure class="ph rv" data-caption="Swimming pool building" onclick="openPhoto(this)"><img src="images/swimming-pool.png" alt="Swimming pool building" onerror="this.parentElement.remove()"><figcaption>Swimming pool building</figcaption></figure>
+    <figure class="ph rv" data-caption="The swimming pool" onclick="openPhoto(this)"><img src="images/pool-water.png" alt="The swimming pool" onerror="this.parentElement.remove()"><figcaption>The swimming pool</figcaption></figure>
+    <figure class="ph rv" data-caption="School buses lined up" onclick="openPhoto(this)"><img src="images/buses.png" alt="School buses lined up" onerror="this.parentElement.remove()"><figcaption>School buses lined up</figcaption></figure>
+    <figure class="ph rv" data-caption="Campus entrance" onclick="openPhoto(this)"><img src="images/campus-entrance.png" alt="Campus entrance" onerror="this.parentElement.remove()"><figcaption>Campus entrance</figcaption></figure>
+    <figure class="ph rv" data-caption="Students cheering" onclick="openPhoto(this)"><img src="images/students.png" alt="Students cheering" onerror="this.parentElement.remove()"><figcaption>Students cheering</figcaption></figure>
+  </div>
+</section>
+
+<section id="highlights" style="padding-left:0;padding-right:0">
+  <div class="head rv" style="padding:0 6%"><div class="eyebrow">Highlights</div><h2>Life at Kautilya, in brief</h2></div>
+  <div class="marquee">
+    <div class="track">
+      <div class="chip">🏊 Swimming lessons</div><div class="chip">⚽ Sports days</div><div class="chip">🤖 Robotics &amp; 3D printing</div>
+      <div class="chip">🎭 Cultural programmes</div><div class="chip">🌱 Sustainability awards</div><div class="chip">📚 Reading culture</div>
+      <div class="chip">🏅 Investiture ceremonies</div><div class="chip">🔭 Science projects</div>
+      <div class="chip">🏊 Swimming lessons</div><div class="chip">⚽ Sports days</div><div class="chip">🤖 Robotics &amp; 3D printing</div>
+      <div class="chip">🎭 Cultural programmes</div><div class="chip">🌱 Sustainability awards</div><div class="chip">📚 Reading culture</div>
+      <div class="chip">🏅 Investiture ceremonies</div><div class="chip">🔭 Science projects</div>
+    </div>
+  </div>
+</section>
+
+<section id="facts">
+  <div class="head rv"><div class="eyebrow">Facts</div><h2>Good to know</h2></div>
+  <div class="info rv">
+    <div><h4>Type</h4><p>Private, co-educational day school</p></div>
+    <div><h4>Board</h4><p>CBSE, affiliation no. 830193</p></div>
+    <div><h4>Levels</h4><p>Kindergarten to pre-university</p></div>
+    <div><h4>Trust</h4><p>J. Ranganna Lakshmamma Charitable Trust</p></div>
+    <div><h4>Transport</h4><p>School buses are reported to serve students</p></div>
+    <div><h4>Hostel</h4><p>Listed as a day school with no hostel</p></div>
+  </div>
+  <p class="disclaimer">Bhuvan is an independent guide built from public sources, and may not be up to date. For fees, admissions and current details, please contact the school directly.</p>
+</section>
+
+<section id="visit">
+  <div class="cta rv">
+    <div class="eyebrow">Visit</div>
+    <h2>Want the official details?</h2>
+    <p>For admissions, fees and events, use the school's own website.</p>
+    <a href="https://kautilyavidyalaya.edu.in" target="_blank" rel="noopener" class="btn btn-main">Open the school's website</a>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">BHUVAN</div>
+  <p>An independent guide to Kautilya Vidyalaya, Mysuru</p>
+  <small>Not an official school website. Photos, if added, belong to their respective owners.</small>
+</footer>
+
+<div class="lb" id="lb" onclick="if(event.target===this)closeTile()">
+  <button class="lb-x" onclick="closeTile()" aria-label="Close">&times;</button>
+  <div class="lb-box">
+    <div class="lb-art" id="lbArt"></div>
+    <h3 id="lbTitle"></h3>
+    <p id="lbText"></p>
+  </div>
+</div>
+
+<script>
+// Reveal elements on scroll
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
+
+// Open a facility tile in the enlarged view
+function openTile(tile){
+  var art = document.getElementById("lbArt");
+  var colour = getComputedStyle(tile.querySelector(".art")).backgroundImage;
+  art.style.background = colour;
+  art.textContent = tile.dataset.emoji;
+  var photo = tile.querySelector("img");
+  if (photo) {
+    var copy = document.createElement("img");
+    copy.src = photo.src;
+    copy.alt = photo.alt;
+    copy.onerror = function(){ copy.remove(); };
+    art.appendChild(copy);
+  }
+  document.getElementById("lbTitle").innerHTML = tile.dataset.title;
+  document.getElementById("lbText").textContent = tile.dataset.text;
+  document.getElementById("lb").classList.add("open");
+}
+function closeTile(){ document.getElementById("lb").classList.remove("open"); }
+
+// Open a gallery photo in the enlarged view
+function openPhoto(fig){
+  var art = document.getElementById("lbArt");
+  var img = fig.querySelector("img");
+  art.style.background = "none";
+  art.textContent = "";
+  var copy = document.createElement("img");
+  copy.src = img.src;
+  copy.alt = img.alt;
+  art.appendChild(copy);
+  document.getElementById("lbTitle").textContent = fig.dataset.caption;
+  document.getElementById("lbText").textContent = "";
+  document.getElementById("lb").classList.add("open");
+}
+document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeTile(); });
+</script>
+</body>
+</html>
